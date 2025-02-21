@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useShowStore } from '@/store/showsStore'
 import SearchBar from '@/components/SearchBar/SearchBar.vue'
 import type { Show } from '@/types/Show'
+import { showsMock } from '@/utils/showsMock'
 
 vi.mock('@/store/showsStore', () => ({
   useShowStore: vi.fn(),
@@ -16,83 +17,11 @@ describe('SearchBar.vue', () => {
 
   beforeEach(() => {
     mockStore = {
-      allShows: [
-        {
-          name: 'Breaking Bad',
-          id: 0,
-          url: '',
-          type: '',
-          language: '',
-          genres: [],
-          status: '',
-          averageRuntime: null,
-          premiered: null,
-          ended: null,
-          officialSite: null,
-          schedule: {
-            time: '',
-            days: [],
-          },
-          rating: {
-            average: null,
-          },
-          network: null,
-          image: null,
-          summary: '',
-          updated: 0,
-        },
-        {
-          name: 'Stranger Things',
-          id: 1,
-          url: '',
-          type: '',
-          language: '',
-          genres: [],
-          status: '',
-          averageRuntime: null,
-          premiered: null,
-          ended: null,
-          officialSite: null,
-          schedule: {
-            time: '',
-            days: [],
-          },
-          rating: {
-            average: null,
-          },
-          network: null,
-          image: null,
-          summary: '',
-          updated: 0,
-        },
-        {
-          name: 'Game of Thrones',
-          id: 2,
-          url: '',
-          type: '',
-          language: '',
-          genres: [],
-          status: '',
-          averageRuntime: null,
-          premiered: null,
-          ended: null,
-          officialSite: null,
-          schedule: {
-            time: '',
-            days: [],
-          },
-          rating: {
-            average: null,
-          },
-          network: null,
-          image: null,
-          summary: '',
-          updated: 0,
-        },
-      ],
+      allShows: showsMock,
       searchShow: vi.fn(),
     }
 
+    // @ts-ignore
     useShowStore.mockReturnValue(mockStore)
   })
 
@@ -113,28 +42,23 @@ describe('SearchBar.vue', () => {
     vi.advanceTimersByTime(500)
     expect(mockStore.searchShow).toHaveBeenCalledWith([
       {
+        id: 1,
         name: 'Breaking Bad',
-        id: 0,
-        url: '',
-        type: '',
-        language: '',
-        genres: [],
-        status: '',
-        averageRuntime: null,
-        premiered: null,
-        ended: null,
-        officialSite: null,
-        schedule: {
-          time: '',
-          days: [],
-        },
-        rating: {
-          average: null,
-        },
-        network: null,
-        image: null,
+        rating: { average: 9.5 },
         summary: '',
+        network: null,
+        type: '',
+        language: 'English',
+        status: '',
         updated: 0,
+        averageRuntime: null,
+        url: '',
+        genres: ['Crime', 'Drama'],
+        schedule: { time: '22:00', days: ['Monday', 'Tuesday'] },
+        officialSite: 'https://www.officialsite.com',
+        premiered: '2008-01-20',
+        ended: '2013-09-29',
+        image: { medium: 'image-url-medium', original: 'image-url-original' },
       },
     ])
 

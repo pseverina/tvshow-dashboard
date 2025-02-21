@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import ShowDetails from '@/pages/DetailsPage/DetailsPage.vue'
 import { useShowStore } from '@/store/showsStore'
 import { useRoute, useRouter } from 'vue-router'
+import { showsMock } from '@/utils/showsMock'
 
 vi.mock('@/store/showsStore', () => {
   return {
@@ -24,19 +25,7 @@ describe('DetailsPage.vue', () => {
 
   beforeEach(() => {
     mockShowStore = {
-      allShows: [
-        {
-          id: 1,
-          name: 'Breaking Bad',
-          language: 'English',
-          genres: ['Crime', 'Drama'],
-          schedule: { time: '22:00', days: ['Monday', 'Tuesday'] },
-          officialSite: 'https://www.officialsite.com',
-          premiered: '2008-01-20',
-          ended: '2013-09-29',
-          image: { medium: 'image-url-medium', original: 'image-url-original' },
-        },
-      ],
+      allShows: showsMock,
       getShows: vi.fn(),
       setGenre: vi.fn(),
       shows: [],

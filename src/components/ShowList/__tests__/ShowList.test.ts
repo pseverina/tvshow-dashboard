@@ -4,6 +4,7 @@ import ShowList from '@/components/ShowList/ShowList.vue'
 import { useRouter } from 'vue-router'
 import type { Show } from '@/types/Show'
 import movieImg from '@/assets/icons/movie-img.svg'
+import { showsMock } from '@/utils/showsMock'
 
 vi.mock('vue-router', () => ({
   useRouter: vi.fn(),
@@ -20,46 +21,7 @@ describe('ShowList.vue', () => {
   })
 
   it('renders show list', () => {
-    const shows: Show[] = [
-      {
-        id: 1,
-        name: 'Breaking Bad',
-        rating: { average: 9.5 },
-        image: { original: 'image-url', medium: 'image-url' },
-        summary: '',
-        genres: [],
-        network: null,
-        schedule: { time: '', days: [] },
-        premiered: '',
-        type: '',
-        language: '',
-        status: '',
-        officialSite: '',
-        updated: 0,
-        averageRuntime: null,
-        ended: '',
-        url: '',
-      },
-      {
-        id: 2,
-        name: 'Stranger Things',
-        rating: { average: 8.7 },
-        image: { original: 'image-url', medium: 'image-url' },
-        summary: '',
-        genres: [],
-        network: null,
-        schedule: { time: '', days: [] },
-        premiered: '',
-        type: '',
-        language: '',
-        status: '',
-        officialSite: '',
-        updated: 0,
-        averageRuntime: null,
-        ended: '',
-        url: '',
-      },
-    ]
+    const shows: Show[] = showsMock
 
     const wrapper = mount(ShowList, {
       props: {
@@ -74,27 +36,7 @@ describe('ShowList.vue', () => {
   })
 
   it('calls router.push when a show is clicked', async () => {
-    const shows: Show[] = [
-      {
-        id: 1,
-        name: 'Breaking Bad',
-        rating: { average: 9.5 },
-        image: { original: 'image-url', medium: 'image-url' },
-        summary: '',
-        genres: [],
-        network: null,
-        schedule: { time: '', days: [] },
-        premiered: '',
-        type: '',
-        language: '',
-        status: '',
-        officialSite: '',
-        updated: 0,
-        averageRuntime: null,
-        ended: '',
-        url: '',
-      },
-    ]
+    const shows: Show[] = showsMock
 
     const wrapper = mount(ShowList, {
       props: {
@@ -142,27 +84,7 @@ describe('ShowList.vue', () => {
   })
 
   it('shows the correct show name and rating', () => {
-    const shows: Show[] = [
-      {
-        id: 1,
-        name: 'Breaking Bad',
-        rating: { average: 9.5 },
-        image: { original: 'image-url', medium: 'image-url' },
-        summary: '',
-        genres: [],
-        network: null,
-        schedule: { time: '', days: [] },
-        premiered: '',
-        type: '',
-        language: '',
-        status: '',
-        officialSite: '',
-        updated: 0,
-        averageRuntime: null,
-        ended: '',
-        url: '',
-      },
-    ]
+    const shows: Show[] = showsMock
 
     const wrapper = mount(ShowList, {
       props: {
